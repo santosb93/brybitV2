@@ -15,6 +15,7 @@ import * as types from './constants/actionTypes'
 const marketsListUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cpolkadot%2Clitecoin%2Ccardano%2Csushi&vs_currencies=usd&include_24hr_change=true';
 
 function App() {
+  
   const [state,dispatch] = useReducer(reducer, {
     isFetching: true,
     marketList: [],

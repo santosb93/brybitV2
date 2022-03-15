@@ -1,0 +1,85 @@
+@import 'variables.scss';
+#signup_form {
+  margin-top: 100px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70%;
+  justify-content: center;
+  gap: 10%;
+  color: $primaryBlack;
+  font-weight: bold;
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 0;
+    padding: 20px;
+    color: $primaryGold;
+    text-shadow: 5px 5px 5px rgb(235, 209, 209);
+    max-height: 60px;
+  }
+  form {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: $primaryOffset;
+    border: 1px solid $primaryOffset;
+    height: 400px;
+    width: 80%;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px rgb(187, 163, 163);
+    max-width: 870px;
+  }
+  .container {
+    justify-content: flex-start;
+    display:flex;
+    gap: 30px;
+    align-items: center;
+    font-size: 2rem;
+    width: 100%;
+  
+  }
+
+  input {
+    padding: 5px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  label{
+    width: 170px;
+  }
+  button {
+    width: 100%;
+    border-radius:20px;
+    height: 50px;
+    background-color: $primaryWhite;
+    font-size: 1rem;
+    box-shadow: 4px 4px 4px rgb(187, 163, 163);
+    max-width: 400px;
+    align-self: center;
+  }
+  #signup_button {
+    width: 50%;
+    color: $primaryWhite;
+    font-weight: bold;
+    min-width: 100px;
+    background-color: $primaryGold;
+  }
+  a {
+    width:400px;
+    button {
+      background-color: $primaryWhite;
+      color: $primaryGold;
+      font-weight: bold;
+      z-index: 3;
+
+    }
+  }
+  #container--buttons{
+    flex-direction: column;
+  }
+}

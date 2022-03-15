@@ -1,9 +1,10 @@
+@import 'variables.scss';
 #Banner{
   top: 100px;
   width: 100vw;
   height: 30rem;
   padding: 50px;
-  background-color: rgb(248, 207, 23);
+  background-color: $primaryGold;
   z-index: -1;
   display:flex;
   flex-direction: column;
@@ -17,7 +18,7 @@
         height: 400px;
         border-radius: 10px;
         box-shadow: 10px 10px 30px rgb(167, 153, 153);
-        background-color:white;
+        background-color:$primaryWhite;
       }
       .trade_button{
         display:flex;

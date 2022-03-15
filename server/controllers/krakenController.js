@@ -31,7 +31,7 @@ krakenController.getOhlcData = async (req, res, next) => {
     const krakenRes = await kraken.api('OHLC', dataOptions);
     const coinArray = krakenRes.result[coinOptions[req.params.coin.toUpperCase()]];
     console.log('storing OHLC data');
-     res.locals.ohlcData = coinArray.map((el) => {
+     res.locals.ohlcData = coinArray.map((el, i) => {
        return ({
           time: el[0],
           open: parseFloat(el[1]),

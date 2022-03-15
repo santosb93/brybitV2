@@ -1,3 +1,5 @@
+@import 'variables.scss';
+
 #hero {
   margin-top: 0;
   max-width: 1000px;
@@ -28,11 +30,11 @@
       padding-left: 1rem;
     }
     button {
-      background-color: rgb(248, 207, 23);
+      background-color: $primaryGold;
       color: rgb(255, 255, 255);
       font-weight: bold;
       font-size: 1rem;
-      -webkit-text-stroke-color: rgb(179, 162, 162);
+      -webkit-text-stroke-color: $primaryGoldtextOffset;
       -webkit-text-stroke-width: 0.2px;
       height: 3.5rem;
       width: 5rem;
@@ -42,7 +44,7 @@
     }
     button:hover {
       cursor: pointer;
-      background-color: rgb(214, 181, 32);
+      background-color: $primaryGoldDarker;
     }
   }
   video {

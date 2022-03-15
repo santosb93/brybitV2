@@ -22,7 +22,7 @@ const TradeCoin = () => {
   let keepId = useRef(id);
 
   // get the dispatcher from the bryBitReducer
-  const {dispatch} = useContext(bryBitReducer);
+  const {state,dispatch} = useContext(bryBitReducer);
   // on render, get ohlc data, get token, connect socket 
   useEffect( () => {
     //fetch ohlc data
@@ -64,8 +64,8 @@ const TradeCoin = () => {
     }
     // on the message with data, create a new candle
     socket.onmessage = (res) => {
-      console.log(JSON.parse(res.data))
       const cData = JSON.parse(res.data)
+      //console.log(cData);
       if (parseInt(cData[0])) {
         const candleData = {
           time: Math.floor(parseInt(cData[1][1])),
@@ -74,6 +74,7 @@ const TradeCoin = () => {
           low: parseFloat(cData[1][4]).toFixed(2),
           close: parseFloat(cData[1][5]).toFixed(2)
         }
+      console.log(candleData);
       // update the chart
       candleSeries.update(candleData);
       // update candleData state to cause rerender
@@ -86,9 +87,27 @@ const TradeCoin = () => {
     <section className = "TradeCoin">
       <div id = "TradeCoin_form">
         <h1>{id}</h1>
+        <div className = "container">
+          <h2>Margin</h2>
+          <input min = {0} max = {100} type = "number" id = "order_margin" placeholder="Margin (1x, 2x, etc...)"></input>
+          <label htmlFor= "order_margin"></label>
+         </div>
+        <div className = "container">
+          <h2>Market Order</h2>
+          <input min = {1} max = {10000} type = "number" id = "order_value" placeholder="Order Value"></input>
+          <label htmlFor= "">Brybits</label>
+          <h3>Available Brybits: 10000</h3>
+         </div>
+         <div className = "container container--buttons">
+          <button id = "short">Short</button>
+          <button id = "long">Long</button>
+        </div>
       </div>
       <div id = "TradeCoin_info">
         <div id = 'chart'></div>
+        <div className = "container container--active_trade">
+          <h2>Active Trade</h2>
+         </div>
       </div>
     </section>
   );

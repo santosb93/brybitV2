@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const krakenController = require('./controllers/krakenController')
+const krakenController = require('./controllers/krakenController');
 
 app.use('/', express.static(path.resolve(__dirname, '/images/')));
 // serve index.html on the route '/'
