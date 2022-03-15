@@ -1,0 +1,92 @@
+#hero {
+  margin-top: 0;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  min-width: 300px;
+  flex: 1 1 0px;
+  gap: 5rem;
+  picture {
+    display: inline;
+    flex: 1 1 0px;
+  }
+  header { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-width: 450px;
+    span {
+      display:flex;
+      justify-content: center;
+      gap: 1rem;
+      align-items: center;
+    }
+    input {
+      width: 60%;
+      height: 3rem;
+      border-radius: 0.8rem;
+      padding-left: 1rem;
+    }
+    button {
+      background-color: rgb(248, 207, 23);
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+      font-size: 1rem;
+      -webkit-text-stroke-color: rgb(179, 162, 162);
+      -webkit-text-stroke-width: 0.2px;
+      height: 3.5rem;
+      width: 5rem;
+      border: none;
+      border-radius: 0.8rem;
+      box-shadow: 5px 5px 5px rgb(221, 205, 205);
+    }
+    button:hover {
+      cursor: pointer;
+      background-color: rgb(214, 181, 32);
+    }
+  }
+  video {
+    box-shadow: 10px 10px 10px rgb(216, 214, 214);
+    flex: 1 1 0px;
+    min-width: 400px;
+    max-width: 50%;
+    border-radius: 30px;
+  }
+  h1 {
+    font-family:  sans-serif;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+#hero_container{
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.trade_button{
+  display:flex;
+  justify-content: center;
+  button{
+    font-size: 5rem;
+    width: 40%;
+    min-height: 200px;
+    border-radius: 100px;
+  }
+  
+}
+
+
+@media screen and (max-width: 700px) {
+  #hero{
+    margin-top: 250px;
+    
+    flex-wrap: wrap-reverse;
+  }
+  
+}

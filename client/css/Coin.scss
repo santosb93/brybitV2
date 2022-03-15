@@ -1,0 +1,24 @@
+.Coin {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  flex: 1 1 1;
+  max-height: 200px;
+  min-height: 200px;
+  min-width: 200px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: -4px -1px 5px rgb(172, 167, 167);
+    h3 {
+      font-size: 2rem;
+      margin: 0px;
+      color: black;
+    }
+    p {
+      color: black;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+}
+

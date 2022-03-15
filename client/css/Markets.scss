@@ -1,0 +1,26 @@
+#Markets{
+  padding: 100px 0;
+  width: 100vw;
+  height: 30rem;
+  z-index: -1;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: rgb(253, 241, 241);
+  margin-top: 0;
+}
+
+.Markets__container{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center; 
+  align-items: center;
+  width: 700px;
+  height: 500px;
+}
+
+#Markets__header{
+  font-size: 3.5rem;
+  align-items: center;
+}

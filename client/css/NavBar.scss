@@ -1,0 +1,82 @@
+nav {
+  width: 100%;
+  top: 0;
+  position: fixed;
+  display:flex;
+  flex-wrap: wrap;
+  background-color: rgb(49, 40, 40);
+  font-family: 'Fredoka', sans-serif;
+  justify-content: center;
+  align-items: center;
+  gap: 30%;
+  padding: 5px 20px;
+  z-index: 3;
+  ul {
+    padding-left: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  li {
+    font-size: 1rem;
+  }
+  input {
+    border-radius: 5px;
+    height: 25px;
+    width: 200px;
+    background-color: rgb(71, 61, 61);
+    padding: 5px 5px 5px 10px;
+    border: none;
+    :focus {
+      outline: none;
+      color: white;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    :hover {
+      color: rgb(245, 202, 202);
+    }
+    img {
+      width: 50px;
+      height: 50px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: rgb(248, 207, 23);
+    }
+  }
+
+}
+
+#signup {
+  background-color:rgb(248, 207, 23);
+  padding: 5px;
+  border-radius: 12px;
+  -webkit-text-stroke-color: rgb(179, 162, 162);
+  -webkit-text-stroke-width: 0.2px;
+  :hover {
+    color:rgb(124, 109, 109);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  nav {
+    gap: 0rem;
+    align-items: center;
+    flex-direction: column;
+    a {
+      align-self: center;
+    }
+    ul {
+      align-self: center;
+      flex-direction: column;
+    }
+  }
+}
