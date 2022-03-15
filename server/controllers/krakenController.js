@@ -5,12 +5,15 @@ const kraken = new KrakenClient(types.KRAKEN_API_KEY, types.KRAKEN_SECRET_KEY);
 const krakenController = {};
 
 // create a coinOptions object to map to the coin wanted
+// from kraken
 const coinOptions = {
   BITCOIN: 'XXBTZUSD',
   ETHEREUM: 'XETHZUSD',
   LITECOIN: 'XLTCZUSD',
   CARDANO: 'ADAUSD',
-  'SHIBA-INU': 'SHIBUSD',
+  SUSHI: 'SUSHIUSD',
+  POLKADOT: 'DOTUSD'
+
 };
 
 

@@ -10,7 +10,7 @@ const Markets = () => {
       <div className = "Markets__container">
         <h2 id = "Markets__header">
           Explore crypto like Bitcoin,
-          Ethereum, Dogecoin,
+          Ethereum, Polkadot,
           and more...
         </h2>
         </div>

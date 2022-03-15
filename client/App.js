@@ -12,7 +12,7 @@ import Trade from './Pages/Trade';
 import {bryBitReducer} from './context/context.js'
 import reducer from './Reducers/reducer.js'
 import * as types from './constants/actionTypes'
-const marketsListUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cdogecoin%2Clitecoin%2Ccardano%2Cshiba-inu&vs_currencies=usd&include_24hr_change=true';
+const marketsListUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cpolkadot%2Clitecoin%2Ccardano%2Csushi&vs_currencies=usd&include_24hr_change=true';
 
 function App() {
   const [state,dispatch] = useReducer(reducer, {

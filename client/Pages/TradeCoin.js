@@ -9,10 +9,11 @@ const TradeCoin = () => {
   // get the param and assign it a pair for the live data
   const coinOptions = useRef({
     BITCOIN: "XBT/USD",
-    ETHEREUM: 'XETHZUSD',
-    LITECOIN: 'XLTCZUSD',
-    CARDANO: 'ADAUSD',
-    'SHIBA-INU': 'SHIBUSD',
+    ETHEREUM: 'ETH/USD',
+    LITECOIN: 'LTC/USD',
+    CARDANO: 'ADA/USD',
+    SUSHI: 'SUSHI/USD',
+    POLKADOT: 'DOT/USD'
   })
   // save variables with useRef
   let socket = useRef(null);
@@ -65,7 +66,7 @@ const TradeCoin = () => {
     socket.onmessage = (res) => {
       console.log(JSON.parse(res.data))
       const cData = JSON.parse(res.data)
-      if (cData[0] === 328) {
+      if (parseInt(cData[0])) {
         const candleData = {
           time: Math.floor(parseInt(cData[1][1])),
           open: parseFloat(cData[1][2]).toFixed(2),
