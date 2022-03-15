@@ -33,7 +33,12 @@
        ...state,
        ohlcCoin: action.payload
      }
- 
+   }
+   case types.UPDATE_LIVE_CANDLE:{
+     return{
+       ...state,
+       liveCandle: action.payload
+     }
    }
  
      default: return state;

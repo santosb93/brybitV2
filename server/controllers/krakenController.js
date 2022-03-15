@@ -11,8 +11,6 @@ const coinOptions = {
   LITECOIN: 'XLTCZUSD',
   CARDANO: 'ADAUSD',
   'SHIBA-INU': 'SHIBUSD',
-  
-
 };
 
 
@@ -39,7 +37,7 @@ krakenController.getOhlcData = async (req, res, next) => {
           close: parseFloat(el[4])
        })
      });
-  
+
     return next();
   } catch (err) {
     return next({
@@ -49,6 +47,7 @@ krakenController.getOhlcData = async (req, res, next) => {
 
   }
 }
+
 
 
 module.exports = krakenController;

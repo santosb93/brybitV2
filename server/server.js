@@ -10,8 +10,6 @@ app.get('/' , (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '/server/index.html'));
 });
 
-
-
 /**
  * handle parsing request body
  */

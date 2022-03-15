@@ -17,7 +17,8 @@ const marketsListUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoi
 function App() {
   const [state,dispatch] = useReducer(reducer, {
     isFetching: true,
-    marketList: []
+    marketList: [],
+    liveCandle: {}
   });
   // on page load, get the marketsList, update state
   useEffect(() => {
