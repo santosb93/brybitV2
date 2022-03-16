@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import '../css/NavBar.scss';
 import logo_transparent from '../../images/logo_transparent.png'
+import { bryBitReducer } from '../context/context';
 const NavBar = props => {
-  return (
+  
+   return (
     <nav>
       <a href='/'>
         <img src={logo_transparent} alt="BryBit Logo"></img>
@@ -25,7 +27,7 @@ const NavBar = props => {
           <a href="/signup" id ='signup'>Sign up</a>
         </li>
         <li>
-          <a href="/myProfile">Profile</a>
+          <a href="/myProfile" id= 'profile'>Profile</a>
         </li>
       </ul>
     </nav>

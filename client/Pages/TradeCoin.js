@@ -66,7 +66,7 @@ const TradeCoin = () => {
     // on the message with data, create a new candle
     socket.onmessage = (res) => {
       const cData = JSON.parse(res.data)
-      //console.log(cData);
+      console.log(cData);
       if (parseInt(cData[0])) {
         const candleData = {
           time: Math.floor(parseInt(cData[1][1])),
@@ -80,9 +80,9 @@ const TradeCoin = () => {
       candleSeries.update(candleData);
       // update candleData state to cause rerender
       dispatch(types.UPDATE_LIVE_CANDLE, candleData);
+       console.log('CURRENT STATE', state);
       }
     }
-
   },[]);
   return (
     <section className = "TradeCoin">

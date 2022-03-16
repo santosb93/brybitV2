@@ -40,6 +40,13 @@
        liveCandle: action.payload
      }
    }
+   case types.SET_CURRENT_USER:{
+     console.log('Setting current user')
+     return {
+       ...state,
+       currentUser: action.payload
+     }
+   }
  
      default: return state;
    }

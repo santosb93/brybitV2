@@ -19,7 +19,8 @@ function App() {
   const [state,dispatch] = useReducer(reducer, {
     isFetching: true,
     marketList: [],
-    liveCandle: {}
+    liveCandle: {},
+    currentUser: {username: "Profile"}
   });
   // on page load, get the marketsList, update state
   useEffect(() => {
