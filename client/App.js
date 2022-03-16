@@ -43,7 +43,8 @@ function App() {
       dispatch({type: types.UPDATE_MARKET_LIST, payload: MarketListArray})
     })
     .catch((err)=> console.log('Markets: fetch /api: Error: ', err));
-}, []);
+  }, []);
+    // utilize use effect hook to fetch from gecko api for market data 
     return (
       <Router>
         <div className = "brybit">

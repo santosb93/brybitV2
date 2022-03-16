@@ -1,9 +1,15 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const krakenController = require('./controllers/krakenController');
 
 
+
+
+/**
+ * require routers
+ */
+const coinRouter = require('./routes/coins.js');
+const usersRouter = require('./routes/users');
 
 /**
  * handle parsing request body
@@ -11,31 +17,51 @@ const krakenController = require('./controllers/krakenController');
  app.use(express.json());
  app.use(express.urlencoded({ extended: true }));
 
-//  app.get('/', (req, res) => {
-//    return res.status(200).send("hi");
-//  });
 
+/**
+ * send static files to all requests with path '/' 
+ */
 app.use('/', express.static(path.resolve(__dirname, '../build/')));
-// serve index.html on the route '/'
+
+/**
+ * send index.html to all requests with path '/' 
+ */
 app.get('/' , (req, res) => {
   console.log(err);
   return res.status(200).sendFile(path.join(__dirname, '../build/index.html'));
 });
+
 /**
+ * Routers
  * 
  */
- app.get('/coins/ohlc/:coin', krakenController.getOhlcData, (req, res) => {
-   return res.status(200).json({ohlc: res.locals.ohlcData});
- });
+
+/**
+ * send all requests to path /coins to coinRouter
+ */
+app.use('/coins/', coinRouter);
+/**
+ * send all requests to path /coins to coinRouter
+ */
+ app.use('/users/', usersRouter);
 
 
-app.use((req,res)=>{
+ /**
+ * endRouters
+ * 
+ */
+
+ 
+/**
+ * Global catch 
+ */
+app.use((req, res)=>{
   res.status(400).send("BAD ROUTE");
 })
 
  /**
  * express error handler
- * @see https://expressjs.com/en/guide/error-handling.html#writing-error-handlers
+ * 
  */
 
 app.use((err, req, res, next) => {

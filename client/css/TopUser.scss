@@ -1,0 +1,12 @@
+@import './variables.scss';
+
+.user{
+  display: flex;
+  gap: 20px;
+  font-size: 1rem;
+  color: $secondaryBlack;
+  h4{
+    margin: 5px;
+  }
+  margin: 10px 0;
+}

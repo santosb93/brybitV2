@@ -20,11 +20,13 @@
   "license": "ISC",
   "dependencies": {
     "browserify": "^17.0.0",
+    "cors": "^2.8.5",
     "express": "^4.12.3",
     "express-router": "^0.0.1",
     "gulp": "^4.0.2",
     "kraken-api": "^1.0.1",
     "lightweight-charts": "^3.8.0",
+    "pg": "^8.7.3",
     "prop-types": "^15.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

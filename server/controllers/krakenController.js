@@ -13,7 +13,6 @@ const coinOptions = {
   CARDANO: 'ADAUSD',
   SUSHI: 'SUSHIUSD',
   POLKADOT: 'DOTUSD'
-
 };
 
 

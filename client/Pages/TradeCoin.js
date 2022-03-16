@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { useHref, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import {createChart} from 'lightweight-charts';
 import { bryBitReducer } from '../context/context';
 import * as types from '../constants/actionTypes';
@@ -30,6 +30,7 @@ const TradeCoin = () => {
     fetch(`/coins/ohlc/${id}`)
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       const chartProperties = {
         width: 600,
         height: 400,
