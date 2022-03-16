@@ -16,10 +16,13 @@ app.get('/' , (req, res) => {
  app.use(express.json());
  app.use(express.urlencoded({ extended: true }));
 
- app.get('/', (req, res) => {
-   return res.status(200).send("hi");
- });
+//  app.get('/', (req, res) => {
+//    return res.status(200).send("hi");
+//  });
 
+/**
+ * 
+ */
  app.get('/coins/ohlc/:coin', krakenController.getOhlcData, (req, res) => {
    return res.status(200).json({ohlc: res.locals.ohlcData});
  });
