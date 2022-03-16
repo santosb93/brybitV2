@@ -28,7 +28,7 @@ const SignUp = () => {
         <input type = "text" id = "Login__confirm_email" placeholder="Confirm email"></input>
       </div>
       </form>
-      <button id = 'signup_button'>Signup</button>
+     <button id = 'signup_button'>Signup</button>
      <a href = "/login"><button id="login_button">Go to Login</button></a>
 
     </section>

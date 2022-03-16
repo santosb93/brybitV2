@@ -65,6 +65,9 @@
     color: $primaryBlack;
     font-weight: bold;
   }
+  #login_button:hover{
+    background-color: rgb(245, 222, 222);
+  }
   a {
     max-width: 400px;
     min-width: 300px;
@@ -79,5 +82,9 @@
   }
   #container--buttons{
     flex-direction: column;
+  }
+  button:hover{
+    cursor: pointer;
+    background-color: rgb(248, 219, 90);
   }
 }

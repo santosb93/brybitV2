@@ -6,7 +6,7 @@
   align-items: center;
   height: 70%;
   justify-content: center;
-  gap: 10%;
+  gap: 50px;
   color: $primaryBlack;
   font-weight: bold;
   h1 {
@@ -62,13 +62,6 @@
     max-width: 400px;
     align-self: center;
   }
-  #signup_button {
-    width: 50%;
-    color: $primaryWhite;
-    font-weight: bold;
-    min-width: 100px;
-    background-color: $primaryGold;
-  }
   a {
     width:400px;
     button {
@@ -76,10 +69,27 @@
       color: $primaryGold;
       font-weight: bold;
       z-index: 3;
-
     }
   }
   #container--buttons{
     flex-direction: column;
+  }
+
+  #signup_button {
+    font-weight: bold;
+    width: 50%;
+    min-height: 75px;
+    border-radius: 50px;
+    height: 200px;
+    color: $primaryWhite;
+    min-width: 100px;
+    background-color: $primaryGold;
+  }
+  button:hover{
+    cursor: pointer;
+    background-color: rgb(245, 222, 222);
+  }
+  #signup_button:hover{
+    background-color: rgb(248, 219, 90);
   }
 }
