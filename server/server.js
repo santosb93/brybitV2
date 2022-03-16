@@ -3,12 +3,7 @@ const app = express();
 const path = require('path');
 const krakenController = require('./controllers/krakenController');
 
-app.use('/', express.static(path.resolve(__dirname, '/images/')));
-// serve index.html on the route '/'
-app.get('/' , (req, res) => {
-  console.log(err);
-  return res.status(200).sendFile(path.join(__dirname, '/server/index.html'));
-});
+
 
 /**
  * handle parsing request body
@@ -20,6 +15,12 @@ app.get('/' , (req, res) => {
 //    return res.status(200).send("hi");
 //  });
 
+app.use('/', express.static(path.resolve(__dirname, '../build/')));
+// serve index.html on the route '/'
+app.get('/' , (req, res) => {
+  console.log(err);
+  return res.status(200).sendFile(path.join(__dirname, '../build/index.html'));
+});
 /**
  * 
  */
@@ -49,5 +50,7 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(3000); //listens on port 3000 -> http://localhost:3000/
+app.listen(3000, ()=> {
+  console.log('listening on port 3000')
+}); //listens on port 3000 -> http://localhost:3000/
 
