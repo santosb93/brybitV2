@@ -1,10 +1,17 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState} from 'react';
 import '../css/NavBar.scss';
 import {Link} from "react-router-dom";
 import logo_transparent from '../../images/logo_transparent.png'
 import { bryBitReducer } from '../context/context';
-const NavBar = props => {
+const NavBar = () => {
    const {state} = useContext(bryBitReducer);
+   useEffect(() => {
+     console.log('username changing states', state.currentUser.username)
+     if(state.currentUser.username){
+      document.getElementById('profile').innerHTML = state.currentUser.username;
+     }
+
+   },[state.currentUser.username])
    return (
     <nav> 
       <Link to = '/'>
@@ -28,7 +35,7 @@ const NavBar = props => {
           <Link to="/signup" id ='signup'>Sign up</Link>
         </li>
         <li>
-          <Link to="/myProfile" id= 'profile'>{state.currentUser.username}</Link>
+          <Link to="/myProfile" id= 'profile'>Profile</Link>
         </li>
       </ul>
     </nav>

@@ -41,6 +41,8 @@
       }
     }
     case types.SET_CURRENT_USER:{
+      console.log('SETTING CURRENT USER');
+      console.log(action.payload);
       return {
         ...state,
         currentUser: action.payload,

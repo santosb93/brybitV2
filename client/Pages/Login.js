@@ -32,6 +32,7 @@ const Login = () => {
           displayMessage.current = 
           `Login successful.`;
           // change the state of activeUser
+          console.log(data.user);
           dispatch({type: types.SET_CURRENT_USER, payload: data.user})
           username.value = '';
           password.value = '';

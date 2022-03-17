@@ -110,7 +110,6 @@ const SignUp = () => {
       first_name: firstName,
       last_name: lastName
     }
-    console.log(userAccount);
     //create the account by creating a post request with the acc info as the body
     fetch('/users/createUser',{
       method: "POST",
@@ -120,21 +119,11 @@ const SignUp = () => {
       }
     }).then(res => res.json())
     .then(data => {
-      console.log(data);
-      // make the currentUser state into the user that logged in
-      // dispatch({type: types.SET_CURRENT_USER, payload: data});
+      console.log('response data after sign in', data);
+      // make the currentUser state into the user that logged
+      dispatch({type: types.SET_CURRENT_USER, payload: data.username});
       //setSuccesful Signup message
-      setSuccessMessage([<Message color='green' message='Signup successful'/>])
-      console.log(data.user);
-      // set inputs to empty
-      username = '';
-      password = '';
-      passwordConfirm = '';
-      firstName = '';
-      lastName = '';
-      email = '';
-      emailConfirm = '';
-   
+      setSuccessMessage([<Message color='green' message='Signup successful'/>]);
     }
 
     )

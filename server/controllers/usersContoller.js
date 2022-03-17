@@ -68,7 +68,7 @@ usersController.createUser = async (req, res, next) => {
     };
     // query the database with the req body info
     await db.query(query)
-    res.locals.username = {username, password, email, first_name,last_name};
+    res.locals.username = {username, email, first_name,last_name, brybits};
     next();
   } catch (err) {    
     return next({
