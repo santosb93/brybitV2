@@ -141,23 +141,20 @@ const SignUp = () => {
           {successMessage}
         </div>
         <div className = "container">
-          <label htmlFor= "Signup__firstname">First Name:</label>
+          <label htmlFor= "Signup__firstname">Name:</label>
           <input type = "text" id = "Signup__firstname" placeholder="First Name"></input>
-          <label htmlFor= "Signup__lastname">Last Name:</label>
           <input type = "text" id = "Signup__lastname" placeholder="Last Name"></input>
         </div>
         {nameMessage}
         <div className = "container">
           <label htmlFor= "Signup__password">Password:</label>
           <input type = "password" id = "Signup__password" placeholder="Enter password.."></input>
-          <label htmlFor= "Signup__confirm_password">Password:</label>
           <input type = "password" id = "Signup__confirm_password" placeholder="Confirm password.."></input>
         </div>
         {passwordMessage}
         <div className = "container">
           <label htmlFor= "Signup__email">Email:</label>
           <input type = "text" id = "Signup__email" placeholder="Enter email"></input>
-          <label htmlFor= "Signup__confirm_email">Email:</label>
           <input type = "text" id = "Signup__confirm_email" placeholder="Confirm email"></input>
         </div>
         {emailMessage}
