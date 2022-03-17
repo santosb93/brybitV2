@@ -12,7 +12,6 @@ const Banner = () => {
     fetch('/users')
     .then(res => res.json())
     .then(data => {
-      console.log(data.users);
       const top10Array = [];
       for (let i = 0; i < 10; i++){
         top10Array.push(<TopUser 
@@ -25,7 +24,6 @@ const Banner = () => {
         />);
       }
       setTop10(top10Array);
-      console.log(top10);
     })
   },[]);
   return (

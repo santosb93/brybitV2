@@ -2,9 +2,16 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { bryBitReducer } from '../context/context';
 import '../css/ActiveTrade.scss';
 import * as types from '../constants/actionTypes';
+import audioStart from '../../sounds/startTrade.mp3'
+import audioUp from '../../sounds/coinUp.mp3'
+import audioDown from '../../sounds/coinDown.mp3'
 
-const ActiveTrade = ({orderValue, orderMargin, orderType}) => {
-
+const ActiveTrade = ({orderValue, orderMargin, orderType, setLiquidationMessage}) => {
+  const oldProfitLoss = useRef('');
+  useEffect(() => {
+    const startTradeAudio = new Audio(audioStart);
+    startTradeAudio.play();
+  },[])
   // get the orderValue, convert to a number
   orderValue = parseInt(orderValue);
   // get the orderMargin convert to a number
@@ -24,12 +31,36 @@ const ActiveTrade = ({orderValue, orderMargin, orderType}) => {
  if (orderType === 'long'){
   profitLoss = Math.floor((parseInt(state.liveCandle.close) - orderPrice.current) * orderWeight);
   liquidationPrice = (orderPrice.current - orderValue/orderWeight).toFixed(2);
+  if (liquidationPrice > parseInt(state.liveCandle.close)){
+    console.log('liquidationPrice', liquidationPrice, typeof liquidationPrice);
+    console.log('currentPrce ', parseInt(state.liveCandle.close), typeof liquidationMessage);
+    alert('Your position has been liquidated');
+  }
  }
  //calculate profiteLoss for trade types short
- if (orderType === 'short'){
+ if (orderType === 'short') {
    profitLoss = Math.floor((orderPrice.current - parseInt(state.liveCandle.close)) * orderWeight);
    liquidationPrice = ((orderValue/orderWeight) + orderPrice.current).toFixed(2);
+    //if the liquidiationPrice is equal to current price, send message and close trade
+  if (liquidationPrice < parseInt(state.liveCandle.close)){
+    console.log('liquidationPrice', liquidationPrice, typeof liquidationPrice);
+    console.log('currentPrce ', parseInt(state.liveCandle.close), typeof liquidationMessage);
+    alert('Your position has been liquidated');
+  }
  }
+ // if profitLoss.current is '', assign profit loss to current profitLoss
+ if (oldProfitLoss.current === '')oldProfitLoss.current = profitLoss;
+ // if oldProfitLoss > profitloss play coin up sound
+ else if (oldProfitLoss.current > profitLoss){
+   const coinUpAudio = new Audio(audioUp);
+   coinUpAudio.play();
+ }
+ // if oldProfitLoss < profitLoss play coin down sound
+ else if (oldProfitLoss.current < profitLoss){
+   const coinDownAudio = new Audio(audioDown);
+   coinDownAudio.play();
+ }
+ oldProfitLoss.current = profitLoss;
 const close = () => {
   console.log(state);
   console.log(state.currentUser.brybits);
@@ -39,7 +70,7 @@ const close = () => {
     username: state.currentUser.username,
     brybits: update
   }
-
+  // update the user with their new total brybits
   fetch('/users/updateUser', {
     method: 'PATCH',
     body: JSON.stringify(body),
@@ -54,6 +85,8 @@ const close = () => {
   })
   .catch( err  => console.log(err))
 }
+
+
 
   //console.log('state', state);
   return (

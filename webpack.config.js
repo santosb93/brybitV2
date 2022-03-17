@@ -70,7 +70,7 @@ module.exports = {
 
             },
             {
-              test: /\.(move|mp4)$/,
+              test: /\.(move|mp4|mp3)$/,
               use: [
                     {
                       loader: 'file-loader',

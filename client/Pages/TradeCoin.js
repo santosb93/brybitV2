@@ -12,6 +12,7 @@ const TradeCoin = () => {
   // get the dispatcher from the bryBitReducer
   const {state,dispatch} = useContext(bryBitReducer);
   const [errorMessage, setErrorMessage] = useState([]);
+  const [liquidationMessage, setLiquidationMessage] = useState([]);
 
   // set a state for the active trade
   // get the param and assign it a pair for the live data
@@ -35,22 +36,43 @@ const TradeCoin = () => {
     const orderValue = document.getElementById('order_value');
     // if user is not logged in, return
     if (state.currentUser.username === 'Profile') {
-      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'Please login to trade'/>]);
+      setErrorMessage([<Message 
+        color = 'red'
+        id='ErrorMessage' 
+        key = {1} 
+        message = 'Please login to trade'
+      />]);
+      return;
+    }
+    if (orderMargin.value > 100) {
+      setErrorMessage([<Message 
+        color = 'red'
+        id='ErrorMessage' 
+        key = {1} 
+        message = 'Margin cannot exceed 100'
+      />]);
       return;
     }
     // if the orderMargin or orValue inputed is falsy return
     if (!orderMargin.value || !orderValue.value) {
-      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'Invalid Entry'/>]);
+      setErrorMessage([<Message 
+        color = 'red' 
+        id='ErrorMessage' 
+        key = {1} 
+        message = 'Invalid Entry. Must enter values for Margin and Market Order'
+      />]);
       return;
     }
     // if orderMargin * orderValue is greater than account brybits
-    if ((orderMargin.value * orderValue.value) > state.currentUser.bryBits) {
-      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'Not Enough Brybits'/>]);
+    if ((orderMargin.value * orderValue.value) > state.currentUser.brybits) {
+      setErrorMessage([<Message id='ErrorMessage' key = {1} color = 'red'
+        message = {`Not Enough Brybits. This order is equal to ${orderMargin.value*orderValue.value} brybits`}
+      />]);
       return;
     }
     // if user clicks the trade button during an active trade, return
     if (state.activeTrade.length === 1){
-      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'There is an active trade'/>]);
+      setErrorMessage([<Message color = 'red' id='ErrorMessage' key = {1} message = 'There is an active trade'/>]);
       return;
     }
     // clear the error message if it exists
@@ -61,6 +83,7 @@ const TradeCoin = () => {
        orderMargin = {orderMargin.value}
        orderValue = {orderValue.value}
        orderType = {e.target.id}
+       setLiquidationMessage = {setLiquidationMessage}
       />]});
   }
 
@@ -140,8 +163,8 @@ const TradeCoin = () => {
          <div className = "container container--buttons">
           <button id = "short" onClick= {trade}>Short</button>
           <button id = "long" onClick= {trade}>Long</button>
-           {errorMessage}
         </div>
+        {errorMessage}
       </div>
       <div id = "TradeCoin_info">
         <h3>*LIVE CHART*</h3>

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { bryBitReducer } from '../context/context';
+import { useNavigate } from 'react-router-dom';
 import '../css/Login.scss'
 import Message from '../Components/Message';
 import * as types from '../constants/actionTypes'
 const Login = () => {
-  let isCorrectLogin = useRef("");
   let displayMessage = useRef('');
-
+  let textColor = {};
   // get the dispatch from the context
   const {dispatch} = useContext(bryBitReducer);
   const login = () => {
@@ -29,18 +29,18 @@ const Login = () => {
       .then(data => {
         if (data.user) {
           console.log(data.user);
-          displayMessage.current = "You have successfuly logged in";
+          displayMessage.current = 
+          `Login successful.`;
           // change the state of activeUser
           dispatch({type: types.SET_CURRENT_USER, payload: data.user})
-          isCorrectLogin = true;
-          username.value = "";
-          password.value = "";
+          username.value = '';
+          password.value = '';
+          textColor = 'green'
         }
         else {
-          // if data is falsy, incorrect password/login combination
-          isCorrectLogin = false;
           displayMessage.current = "Incorrect password/login. Please try again";
           dispatch({type: types.SET_CURRENT_USER, payload: {}})
+          textColor = 'red'
         }
       })
       .catch(err => {
@@ -60,7 +60,7 @@ const Login = () => {
         <label htmlFor= "Login__password">Password:</label>
         <input type = "password" id = "Login__password" placeholder="Enter password.."></input>
       </div>
-      { <Message message = {displayMessage.current}/>}
+      { <Message color = {textColor} message = {displayMessage.current}/>}
       </form>
       <button id="login_button" onClick = {login}>Login</button>
       <a href = "/signup"><button>Create an Account</button></a>
