@@ -29,19 +29,38 @@ const TradeCoin = () => {
   const {id} = useParams()
   let keepId = useRef(id);
 
-  const long = () => {
+  const trade = (e) => {
+    console.log(e.target.id)
     const orderMargin = document.getElementById('order_margin');
     const orderValue = document.getElementById('order_value');
-    if (!orderMargin.value || !orderValue.value) {
-      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'Invalid Entry'/>])
+    // if user is not logged in, return
+    if (state.currentUser.username === 'Profile') {
+      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'Please login to trade'/>]);
       return;
     }
+    // if the orderMargin or orValue inputed is falsy return
+    if (!orderMargin.value || !orderValue.value) {
+      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'Invalid Entry'/>]);
+      return;
+    }
+    // if orderMargin * orderValue is greater than account brybits
+    if ((orderMargin.value * orderValue.value) > state.currentUser.bryBits) {
+      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'Not Enough Brybits'/>]);
+      return;
+    }
+    // if user clicks the trade button during an active trade, return
+    if (state.activeTrade.length === 1){
+      setErrorMessage([<Message id='ErrorMessage' key = {1} message = 'There is an active trade'/>]);
+      return;
+    }
+    // clear the error message if it exists
     if (errorMessage.length === 1) setErrorMessage([]);
     // on click grab the value of margin input, market order, drill down to ActiveTrade
     dispatch({type: types.SET_ACTIVE_TRADE,
       payload: [<ActiveTrade key = {1}
        orderMargin = {orderMargin.value}
        orderValue = {orderValue.value}
+       orderType = {e.target.id}
       />]});
   }
 
@@ -97,7 +116,6 @@ const TradeCoin = () => {
           low: parseFloat(cData[1][4]).toFixed(2),
           close: parseFloat(cData[1][5]).toFixed(2)
         }
-      console.log(candleData);
       dispatch({type: types.UPDATE_LIVE_CANDLE, payload: candleData});
       // update the chart
       candleSeries.update(candleData);
@@ -117,11 +135,11 @@ const TradeCoin = () => {
           <h2>Market Order</h2>
           <input min = {1} max = {10000} type = "number" id = "order_value" placeholder="Order Value"></input>
           <label htmlFor= "">Brybits</label>
-          <h3>Available Brybits:{state.currentUser.bryBits}</h3>
+          <h3>Available Brybits: {state.currentUser.brybits}</h3>
          </div>
          <div className = "container container--buttons">
-          <button id = "short">Short</button>
-          <button id = "long" onClick= {() => {long()}}>Long</button>
+          <button id = "short" onClick= {trade}>Short</button>
+          <button id = "long" onClick= {trade}>Long</button>
            {errorMessage}
         </div>
       </div>

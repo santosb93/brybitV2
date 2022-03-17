@@ -2,23 +2,35 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { bryBitReducer } from '../context/context';
 import '../css/ActiveTrade.scss';
 
-const ActiveTrade = ({orderValue, orderMargin}) => {
+const ActiveTrade = ({orderValue, orderMargin, orderType}) => {
 
+  // get the orderValue, convert to a number
   orderValue = parseInt(orderValue);
+  // get the orderMargin convert to a number
   orderMargin = parseInt(orderMargin);
- const {state} = useContext(bryBitReducer);
- let orderPrice = useRef(state.liveCandle.close);
+  // get the state from the bryBitreducer
+  const {state} = useContext(bryBitReducer);
+  // store the orderPrice
+  let orderPrice = useRef(state.liveCandle.close);
+  // convert the current price to a number
+  orderPrice.current = parseInt(orderPrice.current);
+ // calculate the order weight
+ const orderWeight = parseFloat((orderValue * orderMargin) / orderPrice.current).toFixed(2);
+ // calculate the profit loss and liquidation price for a long
+ let profitLoss = 0;
+ let liquidationPrice = 0;
+ //calculate profitLoss for trade types long
+ if (orderType === 'long'){
+  profitLoss = Math.floor((parseInt(state.liveCandle.close) - orderPrice.current) * orderWeight);
+  liquidationPrice = (orderPrice.current - orderValue/orderWeight).toFixed(2);
+ }
+ //calculate profiteLoss for trade types short
+ if (orderType === 'short'){
+   profitLoss = Math.floor((orderPrice.current - parseInt(state.liveCandle.close)) * orderWeight);
+   liquidationPrice = ((orderValue/orderWeight) + orderPrice.current).toFixed(2);
+ }
 
- orderPrice.current = parseInt(orderPrice.current);
- console.log('orderPrice type', orderPrice, typeof orderPrice.current);
- const orderWeight = parseFloat((orderValue * orderMargin) / orderPrice.current);
- console.log('orderValue', orderValue, typeof orderValue);
- console.log('livePrice', parseInt(state.liveCandle.close), typeof parseInt(state.liveCandle.close))
- console.log('weight', orderWeight, typeof orderWeight);
- const profitLoss = Math.floor((parseInt(state.liveCandle.close) - orderPrice.current) * orderWeight);
- const liquidationPrice = (orderPrice.current - orderValue/orderWeight);
- console.log('liquidationPrice', liquidationPrice, typeof liquidationPrice);
- console.log('profitLoss', profitLoss, typeof profitLoss);
+
   //console.log('state', state);
   return (
    <section id = "active_trade">
@@ -28,12 +40,16 @@ const ActiveTrade = ({orderValue, orderMargin}) => {
         <p id = 'profitLoss'>{profitLoss + ' BryBits'}</p>
       </div>
       <div>
+        <label htmlFor= 'activeTradeType'>Order Type</label>
+        <p id = 'activeTradeType'>{orderType}</p>
+      </div>
+      <div>
         <label htmlFor= 'activeTradeMargin'>Order Margin</label>
         <p id = 'activeTradeMargin'>{orderMargin}</p>
       </div>
       <div>
         <label htmlFor= 'activeTradeValue'>Order Value</label>
-        <p id = 'activeTradeValue'>{orderValue}</p>
+        <p id = 'activeTradeValue'>{orderValue + ' BryBits'}</p>
       </div>
       <div>
         <label htmlFor= 'activeTradePrice'>Order Price</label>
@@ -52,5 +68,12 @@ const ActiveTrade = ({orderValue, orderMargin}) => {
     </section>
   );
 };
+
+// console.log('orderPrice type', orderPrice, typeof orderPrice.current);
+// console.log('orderValue', orderValue, typeof orderValue);
+// console.log('livePrice', parseInt(state.liveCandle.close), typeof parseInt(state.liveCandle.close))
+// console.log('weight', orderWeight, typeof orderWeight);
+// console.log('liquidationPrice', liquidationPrice, typeof liquidationPrice);
+// console.log('profitLoss', profitLoss, typeof profitLoss);
 
 export default ActiveTrade;
