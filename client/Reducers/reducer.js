@@ -41,14 +41,12 @@
       }
     }
     case types.SET_CURRENT_USER:{
-      console.log('Setting current user')
       return {
         ...state,
         currentUser: action.payload,
       }
     }
     case types.SET_ACTIVE_TRADE: {
-      console.log('SETTING active trade');
       return {
         ...state,
         activeTrade: action.payload,

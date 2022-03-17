@@ -1,10 +1,5 @@
-// const { Pool } = require('pg');
+
  const types = require('../constants/things');
-
-
-// const pool = new Pool({
-//   connectionString: types.PG_URI
-// });
  const pg = require('pg');
  const conString = types.PG_URI;
  const client = new pg.Client(conString);

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { bryBitReducer } from '../context/context';
 import '../css/ActiveTrade.scss';
+import * as types from '../constants/actionTypes';
 
 const ActiveTrade = ({orderValue, orderMargin, orderType}) => {
 
@@ -9,7 +10,7 @@ const ActiveTrade = ({orderValue, orderMargin, orderType}) => {
   // get the orderMargin convert to a number
   orderMargin = parseInt(orderMargin);
   // get the state from the bryBitreducer
-  const {state} = useContext(bryBitReducer);
+  const {state, dispatch} = useContext(bryBitReducer);
   // store the orderPrice
   let orderPrice = useRef(state.liveCandle.close);
   // convert the current price to a number
@@ -32,9 +33,26 @@ const ActiveTrade = ({orderValue, orderMargin, orderType}) => {
 const close = () => {
   console.log(state);
   console.log(state.currentUser.brybits);
-  const {username} = state.currentUser;
   console.log(profitLoss + state.currentUser.brybits);
   const update = profitLoss + state.currentUser.brybits;
+  const body = {
+    username: state.currentUser.username,
+    brybits: update
+  }
+
+  fetch('/users/updateUser', {
+    method: 'PATCH',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+  .then( res => res.json())
+  .then( data => {
+    console.log(data);
+    dispatch({type: types.SET_ACTIVE_TRADE, payload: []})
+  })
+  .catch( err  => console.log(err))
 }
 
   //console.log('state', state);

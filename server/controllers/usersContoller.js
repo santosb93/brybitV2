@@ -38,7 +38,8 @@ usersController.getUser = async (req, res, next) => {
   } 
 }
 usersController.updateUser = async (req, res, next) => {
-  const {username, brybits} = req.body
+  const {username, brybits} = req.body;
+  console.log(brybits);
   try {
     const query = {
       text: 'UPDATE users SET brybits = $2 WHERE users.username = $1;',
