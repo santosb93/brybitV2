@@ -17,7 +17,7 @@ usersController.getAllUsers = async (req, res, next) => {
   } 
 }
 
-usersController.getUser = async (req, res, next) => {
+usersController.login = async (req, res, next) => {
   try {
     const query = {
       text: 'SELECT u.username,u.email,u.brybits,u.first_name,u.last_name from users u WHERE u.username = $1 AND u.password = $2',
@@ -58,6 +58,26 @@ usersController.updateUser = async (req, res, next) => {
     });
   } 
 }
+usersController.createUser = async (req, res, next) => {
+  console.log('why no get here' , req.body);
+  const {username, password, email, brybits, first_name, last_name} = req.body
+  try {
+    const query = {
+      text: `INSERT INTO users (username,password,email,brybits,first_name,last_name) VALUES($1,$2,$3,$4,$5,$6)`,
+      values: [username,password,email,brybits,first_name,last_name]
+    };
+    // query the database with the req body info
+    await db.query(query)
+    res.locals.username = {username, password, email, first_name,last_name};
+    next();
+  } catch (err) {    
+    return next({
+      log: 'error in userController.createUser',
+      message: {err: err}
+    });
+  }
+}
+
 
 
 module.exports = usersController;
