@@ -5,7 +5,6 @@ import '../css/Trade.scss'
 
 const Trade = () => {
   const {state} = useContext(bryBitReducer);
-  console.log(state);
   return (
     <section id = 'trade'>
       { state.marketList.map((coin) => (

@@ -28,11 +28,8 @@ const Login = () => {
       .then(res => res.json())
       .then(data => {
         if (data.user) {
-          console.log(data.user);
-          displayMessage.current = 
-          `Login successful.`;
+          displayMessage.current = `Login successful.`;
           // change the state of activeUser
-          console.log(data.user);
           dispatch({type: types.SET_CURRENT_USER, payload: data.user})
           username.value = '';
           password.value = '';

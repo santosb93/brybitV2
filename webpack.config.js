@@ -67,7 +67,6 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ['style-loader','css-loader']
-
             },
             {
               test: /\.(move|mp4|mp3)$/,

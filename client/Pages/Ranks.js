@@ -16,7 +16,6 @@ const Ranks = () => {
           bryBits = {el.brybits}
         />;
       })
-      console.log(usersArray);
       setUsers(usersArray);
     })
     .catch( err => console.log(err));

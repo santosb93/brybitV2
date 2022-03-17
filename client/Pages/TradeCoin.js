@@ -31,7 +31,6 @@ const TradeCoin = () => {
   let keepId = useRef(id);
 
   const trade = (e) => {
-    console.log(e.target.id)
     const orderMargin = document.getElementById('order_margin');
     const orderValue = document.getElementById('order_value');
     // if user is not logged in, return
@@ -91,7 +90,6 @@ const TradeCoin = () => {
   // on render, get ohlc data, get token, connect socket 
   useEffect( () => {
     //fetch ohlc data
-    console.log('fetching ohlc');
     fetch(`/coins/ohlc/${id}`)
     .then(res => res.json())
     .then(data => {
@@ -130,7 +128,7 @@ const TradeCoin = () => {
     // on the message with data, create a new candle
     socket.onmessage = (res) => {
       const cData = JSON.parse(res.data)
-      //console.log(cData);
+      console.log(cData);
       if (parseInt(cData[0])) {
         const candleData = {
           time: Math.floor(parseInt(cData[1][1])),

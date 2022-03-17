@@ -6,7 +6,6 @@ import { bryBitReducer } from '../context/context';
 const NavBar = () => {
    const {state} = useContext(bryBitReducer);
    useEffect(() => {
-     console.log('username changing states', state.currentUser.username)
      if(state.currentUser.username){
       document.getElementById('profile').innerHTML = state.currentUser.username;
      }
