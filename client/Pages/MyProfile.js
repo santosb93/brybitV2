@@ -4,6 +4,10 @@ const MyProfile = () => {
   return (
     <div>
       My Profile
+      EDIT information
+      DELETE acc
+      LOGOUT
+      TRADE HISTORY
     </div>
   );
 };
