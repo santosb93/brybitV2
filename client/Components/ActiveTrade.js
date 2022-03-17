@@ -29,7 +29,13 @@ const ActiveTrade = ({orderValue, orderMargin, orderType}) => {
    profitLoss = Math.floor((orderPrice.current - parseInt(state.liveCandle.close)) * orderWeight);
    liquidationPrice = ((orderValue/orderWeight) + orderPrice.current).toFixed(2);
  }
-
+const close = () => {
+  console.log(state);
+  console.log(state.currentUser.brybits);
+  const {username} = state.currentUser;
+  console.log(profitLoss + state.currentUser.brybits);
+  const update = profitLoss + state.currentUser.brybits;
+}
 
   //console.log('state', state);
   return (
@@ -64,7 +70,7 @@ const ActiveTrade = ({orderValue, orderMargin, orderType}) => {
         <p id = 'activeTradeLiquidationPrice'>{liquidationPrice}</p>
       </div>
     </div>
-    <button id='closeTrade'>CLOSE TRADE</button>
+    <button id='closeTrade' onClick={close}>CLOSE TRADE</button>
     </section>
   );
 };

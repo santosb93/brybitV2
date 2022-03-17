@@ -12,7 +12,7 @@ usersController.getAllUsers = async (req, res, next) => {
   } catch (error) {
     return next({
       log: 'error in userController.getAllUsers',
-      message: 'eror getting data from database'
+      message: {err: err}
     })
   } 
 }
@@ -27,12 +27,33 @@ usersController.getUser = async (req, res, next) => {
     const dbRes = await db.query(query);
     // if dbRes.rows[0] is empty, wrong username and password
     // store the user in locals.user
+    console.log(dbRes.rows[0]);
     res.locals.user = dbRes.rows[0]
     return next();
   }catch (err) {
     return next({
       log: 'error in userController.getUser',
-      message: 'error finding user on login'
+      message: {err: err}
+    });
+  } 
+}
+usersController.updateUser = async (req, res, next) => {
+  const {username, brybits} = req.body
+  try {
+    const query = {
+      text: 'UPDATE users SET brybits = $2 WHERE users.username = $1;',
+      values: [username, brybits]
+    };
+    // query the database with the req body info
+    await db.query(query);
+    // if dbRes.rows[0] is empty, wrong username and password
+    // store the user in locals.user
+    res.locals.message = 'success';
+    return next();
+  }catch (err) {
+    return next({
+      log: 'error in userController.updateUser',
+      message: {err: err}
     });
   } 
 }
