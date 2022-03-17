@@ -1,33 +1,34 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import '../css/NavBar.scss';
+import {Link} from "react-router-dom";
 import logo_transparent from '../../images/logo_transparent.png'
 import { bryBitReducer } from '../context/context';
 const NavBar = props => {
-  
+   const {state} = useContext(bryBitReducer);
    return (
-    <nav>
-      <a href='/'>
+    <nav> 
+      <Link to = '/'>
         <img src={logo_transparent} alt="BryBit Logo"></img>
         <h1>BryBit</h1>
-      </a>
+      </Link>
       <ul>
         <li>
           <input placeholder = "Search"></input>
         </li>
         <li>
-          <a href="/trade">Trade</a>
+          <Link to="/trade">Trade</Link>
         </li>
         <li>
-          <a href="/ranks">Ranks</a>
+          <Link to="/ranks">Ranks</Link>
         </li>
         <li>
-          <a href="/login">Login</a>
+          <Link to="/login">Login</Link>
         </li>
         <li>
-          <a href="/signup" id ='signup'>Sign up</a>
+          <Link to="/signup" id ='signup'>Sign up</Link>
         </li>
         <li>
-          <a href="/myProfile" id= 'profile'>Profile</a>
+          <Link to="/myProfile" id= 'profile'>{state.currentUser.username}</Link>
         </li>
       </ul>
     </nav>

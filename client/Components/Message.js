@@ -4,7 +4,7 @@ const Message = (props) => {
   const {message} = props;
   useEffect(()=>{
     const p = document.getElementById('message');
-    p.innerText = message.current;
+    p.innerText = message;
   })
   return (
     <div>

@@ -10,6 +10,7 @@
   margin-top: 0;
   padding-top: 200px;
   height: 100vh;
+
   h1 {
     text-align: center;
     font-size: 3rem;
@@ -77,5 +78,8 @@
     background-color: rgb(49, 212, 49);
   }
 }
-
-
+#TradeCoin_info{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}

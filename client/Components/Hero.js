@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/Hero.scss';
-import coinsVideo from '../../images/coins.mp4'
+import coinsVideo from '../../images/coins.mp4';
+import {Link} from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -14,7 +15,7 @@ const Hero = () => {
           <h2><span>Trade for fun. Trade to practice. Trade to compete.</span></h2>
           <span>
             <input placeholder ="Enter Email"></input>
-            <a href='/signup'><button>Sign Up</button></a>
+            <Link to='/signup'><button>Sign Up</button></Link>
           </span>
         </header>
       </section>

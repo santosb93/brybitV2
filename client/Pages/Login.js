@@ -60,7 +60,7 @@ const Login = () => {
         <label htmlFor= "Login__password">Password:</label>
         <input type = "password" id = "Login__password" placeholder="Enter password.."></input>
       </div>
-      { <Message message = {displayMessage}/>}
+      { <Message message = {displayMessage.current}/>}
       </form>
       <button id="login_button" onClick = {login}>Login</button>
       <a href = "/signup"><button>Create an Account</button></a>

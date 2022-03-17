@@ -20,7 +20,8 @@ function App() {
     isFetching: true,
     marketList: [],
     liveCandle: {},
-    currentUser: {username: "Profile"}
+    currentUser: {username: "Profile"},
+    activeTrade: []
   });
   // on page load, get the marketsList, update state
   useEffect(() => {
