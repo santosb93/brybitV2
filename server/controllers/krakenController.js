@@ -12,44 +12,41 @@ const coinOptions = {
   LITECOIN: 'XLTCZUSD',
   CARDANO: 'ADAUSD',
   SUSHI: 'SUSHIUSD',
-  POLKADOT: 'DOTUSD'
+  POLKADOT: 'DOTUSD',
 };
-
 
 krakenController.getOhlcData = async (req, res, next) => {
   console.log('trying to get OHLC data');
   try {
     // calculate the date 24 hours from now
-    const date = Math.floor(Date.now()/1000) - 86400;
+    const date = Math.floor(Date.now() / 1000) - 86400;
     // create the options for the request
     const dataOptions = {
       pair: coinOptions[req.params.coin.toUpperCase()],
       interval: 5,
-      since: date
-    }
+      since: date,
+    };
     const krakenRes = await kraken.api('OHLC', dataOptions);
-    const coinArray = krakenRes.result[coinOptions[req.params.coin.toUpperCase()]];
+    const coinArray =
+      krakenRes.result[coinOptions[req.params.coin.toUpperCase()]];
     console.log('storing OHLC data');
-     res.locals.ohlcData = coinArray.map((el, i) => {
-       return ({
-          time: el[0],
-          open: parseFloat(el[1]),
-          high: parseFloat(el[2]),
-          low: parseFloat(el[3]),
-          close: parseFloat(el[4])
-       })
-     });
+    res.locals.ohlcData = coinArray.map((el, i) => {
+      return {
+        time: el[0],
+        open: parseFloat(el[1]),
+        high: parseFloat(el[2]),
+        low: parseFloat(el[3]),
+        close: parseFloat(el[4]),
+      };
+    });
 
     return next();
   } catch (err) {
     return next({
-      log: "error in krakenController.getOhlcData",
-      message: {error: err},
-    })
-
+      log: 'error in krakenController.getOhlcData',
+      message: { error: err },
+    });
   }
-}
-
-
+};
 
 module.exports = krakenController;

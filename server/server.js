@@ -2,9 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-
-
-
 /**
  * require routers
  */
@@ -14,26 +11,25 @@ const usersRouter = require('./routes/users');
 /**
  * handle parsing request body
  */
- app.use(express.json());
- app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 /**
- * send static files to all requests with path '/' 
+ * send static files to all requests with path '/'
  */
 app.use('/', express.static(path.resolve(__dirname, '../build/')));
 
 /**
- * send index.html to all requests with path '/' 
+ * send index.html to all requests with path '/'
  */
-app.get('/' , (req, res) => {
+app.get('/', (req, res) => {
   console.log(err);
   return res.status(200).sendFile(path.join(__dirname, '../build/index.html'));
 });
 
 /**
  * Routers
- * 
+ *
  */
 
 /**
@@ -43,25 +39,23 @@ app.use('/coins/', coinRouter);
 /**
  * send all requests to path /coins to coinRouter
  */
- app.use('/users/', usersRouter);
+app.use('/users/', usersRouter);
 
-
- /**
- * endRouters
- * 
- */
-
- 
 /**
- * Global catch 
+ * endRouters
+ *
  */
-app.use((req, res)=>{
-  res.status(400).send("BAD ROUTE");
-})
 
- /**
+/**
+ * Global catch
+ */
+app.use((req, res) => {
+  res.status(400).send('BAD ROUTE');
+});
+
+/**
  * express error handler
- * 
+ *
  */
 
 app.use((err, req, res, next) => {
@@ -75,8 +69,6 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-
-app.listen(3000, ()=> {
-  console.log('listening on port 3000')
+app.listen(3000, () => {
+  console.log('listening on port 3000');
 }); //listens on port 3000 -> http://localhost:3000/
-

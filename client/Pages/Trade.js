@@ -1,19 +1,19 @@
 import React, { useContext } from 'react';
 import Coin from '../Components/Coin';
 import { bryBitReducer } from '../context/context';
-import '../css/Trade.scss'
+import '../css/Trade.scss';
 
 const Trade = () => {
-  const {state} = useContext(bryBitReducer);
+  const { state } = useContext(bryBitReducer);
   return (
-    <section id = 'trade'>
-      { state.marketList.map((coin) => (
-          <Coin
-          key = {coin.title}
-          title = {coin.title}
-          price = {coin.price}
-          changePercent = {coin.changePercent}
-          />
+    <section id='trade'>
+      {state.marketList.map((coin) => (
+        <Coin
+          key={coin.title}
+          title={coin.title}
+          price={coin.price}
+          changePercent={coin.changePercent}
+        />
       ))}
     </section>
   );
