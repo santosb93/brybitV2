@@ -1,15 +1,24 @@
 import React from 'react';
 import '../css/Coin.scss';
 import { Link } from 'react-router-dom';
-const Coin = ({ title, price, changePercent }) => {
+
+type CoinType = {
+  title: string;
+  price: number;
+  changePercent: string;
+};
+
+const Coin = ({ title, price, changePercent }: CoinType) => {
   // capitalize the first letter of the string
   title = title.charAt(0).toUpperCase() + title.slice(1);
   // make the % change two decimals long
-  const changePercentNum = parseFloat(changePercent).toFixed(2);
+  let changePercentNum: number = parseFloat(
+    parseFloat(changePercent).toFixed(2)
+  );
   // if the percent is less than 0 make it red, otherwise green
-  const percentColor = () => {
+  const percentColor = (): Object => {
     return {
-      color: parseFloat(changePercent).toFixed(2) < 0 ? 'red' : 'green',
+      color: changePercentNum < 0 ? 'red' : 'green',
     };
   };
   return (
