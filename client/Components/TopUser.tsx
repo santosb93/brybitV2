@@ -1,8 +1,21 @@
 import React from 'react';
 import '../css/TopUser.scss';
 
-const TopUser = (props) => {
-  const { rank, username, firstName, lastName, bryBits } = props;
+type TopUserType = {
+  rank: Number;
+  username: String;
+  firstName: String;
+  lastName: String;
+  bryBits: String;
+};
+
+const TopUser = ({
+  rank,
+  username,
+  firstName,
+  lastName,
+  bryBits,
+}: TopUserType) => {
   return (
     <div className='user'>
       <h4 className='rank'> {rank + '.'}</h4>
