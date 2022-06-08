@@ -1,7 +1,12 @@
+import { string } from 'prop-types';
 import React, { useEffect } from 'react';
 import '../css/Message.scss';
-const Message = (props) => {
-  const { message, color } = props;
+
+type MessageTypes = {
+  message: string;
+  color: 'red' | 'green';
+};
+const Message = ({ message, color }: MessageTypes) => {
   useEffect(() => {
     const p = document.getElementById('message');
     p.innerText = message;
