@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import React, { useReducer, useEffect } from 'react';
+import { render } from 'react-dom';
 import NavBar from './Components/NavBar';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
@@ -9,9 +10,10 @@ import MyProfile from './Pages/MyProfile';
 import SignUp from './Pages/SignUp';
 import TradeCoin from './Pages/TradeCoin';
 import Trade from './Pages/Trade';
-import { bryBitReducer } from './context/context.js';
-import reducer from './Reducers/reducer.js';
+import { bryBitReducer } from './context/context';
+import reducer from './Reducers/reducer';
 import * as types from './constants/actionTypes';
+import './css/index.scss';
 const marketsListUrl =
   'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cpolkadot%2Clitecoin%2Ccardano%2Csushi&vs_currencies=usd&include_24hr_change=true';
 
@@ -69,5 +71,4 @@ function App() {
     </Router>
   );
 }
-
-export default App;
+render(<App />, document.getElementById('root'));
